@@ -1,10 +1,14 @@
 const express = require("express");
 const dotenv =require("dotenv");
-const {data} = require("./data/data")
+const {data} = require("./data/data");
+const MongoDb = require("./config/db")
 
-dotenv.config();
 
 const app = express();
+dotenv.config();
+
+MongoDb();
+
 
 console.log(data)
 app.get("/",(req,resp)=>{
