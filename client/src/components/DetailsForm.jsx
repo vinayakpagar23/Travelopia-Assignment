@@ -11,10 +11,13 @@ import {
   InputRightElement,
   CheckIcon,
   useToast,
-  Text
+  Text,
+  Heading
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
+
 import axios from "axios";
+import AllData from "./AllData";
 const DetailsForm = () => {
   const [name, setName] = useState("vk");
   const [email, setEmail] = useState("ck");
@@ -24,6 +27,7 @@ const DetailsForm = () => {
   const [totalBudget,setTotalBudget] = useState(0);
   const [picLoading, setPicLoading] = useState(false);
   const toast = useToast();
+
   const submitHandler = async () => {
     setPicLoading(true);
     if (!name || !email || !destination || !no_of_travellers) {
@@ -101,7 +105,8 @@ useEffect(()=>{
    setTotalBudget(budgetPerPerson*no_of_travellers)
 },[no_of_travellers])
   return (
-    <Box width={"50%"} margin={"auto"}>
+    <Box width={"50%"} margin={"auto"} marginTop={"60px"}>
+      <Heading>Fill Your Data</Heading>
       <VStack spacing={"5px"} color="black">
         <FormControl id="name" isRequired>
           <FormLabel>Name</FormLabel>
@@ -170,6 +175,7 @@ useEffect(()=>{
         </Button>
       </VStack>
     </Box>
+   
   );
 };
 
