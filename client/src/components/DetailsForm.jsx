@@ -10,20 +10,73 @@ import {
   InputLeftElement,
   InputRightElement,
   CheckIcon,
+  useToast
 } from "@chakra-ui/react";
 import React, { useState } from "react";
-
+import axios from "axios";
 const DetailsForm = () => {
   const [show, setShow] = useState(false);
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [name, setName] = useState("vk");
+  const [email, setEmail] = useState("ck");
   const [destination, setDestination] = useState();
-  const [numTravellers, setNumTravellers] = useState(1);
+  const [no_of_travellers, setNumTravellers] = useState(1);
   const [budgetPerPerson, setBudgetPerPerson] = useState(0);
-
+  const [picLoading, setPicLoading] = useState(false);
+  const toast = useToast();
+  const submitHandler = async() => {
+    setPicLoading(true);
+    if (!name || !email || !destination || !no_of_travellers) {
+      toast({
+        title: "Please Fill all the Feilds",
+        status: "warning",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom",
+      });
+      setPicLoading(false);
+      return;
+    }
+    try {
+      const config = {
+        headers: {
+          "Content-type": "application/json",
+        },
+      };
+      const { data } = await axios.post(
+        "/api/details",
+        {
+          name,
+          email,
+          destination,
+          no_of_travellers,
+          budgetPerPerson
+        },
+        config
+      );
+      console.log(data);
+      toast({
+        title: "Registration Successful",
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom",
+      });
+      localStorage.setItem("details", JSON.stringify(data));
+      setPicLoading(false);
  
-  const submitHandler = () => {};
+    } catch (error) {
+      toast({
+        title: "Error Occured!",
+        description: error.response.data.message,
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom",
+      });
+      setPicLoading(false);
+    }
+  };
   return (
     <Box width={"50%"} margin={"auto"}>
       <VStack spacing={"5px"} color="black">
