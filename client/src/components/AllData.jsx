@@ -5,7 +5,7 @@ import { Card, CardBody, CardFooter, CardHeader, Heading, SimpleGrid ,Text,Butto
 const AllData = () => {
     const[data1,setData] = useState([]);
     const fetchData =async()=>{
-        const {data} = await axios.get("/api/details");
+        const {data} = await axios.get("https://plain-bull-underclothes.cyclic.app/api/details");
         console.log(data);
         setData(data)
     }

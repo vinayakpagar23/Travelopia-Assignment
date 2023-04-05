@@ -47,8 +47,8 @@ const DetailsForm = () => {
           "Content-type": "application/json",
         },
       };
-      const { data } = await axios.post(
-        "/api/details",
+      const {data}  = await axios.post(
+        "https://plain-bull-underclothes.cyclic.app/api/details",
         {
           name,
           email,
