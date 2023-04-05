@@ -3,13 +3,14 @@ const dotenv =require("dotenv");
 const {data} = require("./data/data");
 const MongoDb = require("./config/db")
 const  detailsRoutes  = require("./routes/detailsRoutes")
-
+const cors = require('cors');
 
 const app = express();
 dotenv.config();
 
 MongoDb();
 
+app.use(cors());
 app.use(express.json());
 
 
