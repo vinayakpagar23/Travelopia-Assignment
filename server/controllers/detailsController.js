@@ -3,7 +3,7 @@ const Details = require("../Models/detailsModel");
 
 
 const createDetails = asyncHandler(async (req, res) => {
-  const { name, email, destination,no_of_travellers,budgetPerPerson} = req.body;
+  const { name, email, destination,no_of_travellers,budgetPerPerson,totalBudget} = req.body;
 
   if (!name || !email || !destination || !no_of_travellers ) {
     res.status(400);
@@ -21,7 +21,8 @@ const createDetails = asyncHandler(async (req, res) => {
     email,
     destination,
     no_of_travellers,
-    budgetPerPerson
+    budgetPerPerson,
+    totalBudget,
   });
 
   if (details) {
