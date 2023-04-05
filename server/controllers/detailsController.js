@@ -40,5 +40,10 @@ const createDetails = asyncHandler(async (req, res) => {
   }
 });
 
+const allData = asyncHandler(async (req, res) => {
+  const data = await Details.find();
+  res.send(data);
+});
 
-module.exports = { createDetails };
+
+module.exports = { createDetails,allData };
