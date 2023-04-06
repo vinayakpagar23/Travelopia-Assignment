@@ -14,6 +14,8 @@ app.use(cors());
 app.use(express.json());
 
 
+
+
 console.log(data)
 app.get("/",(req,resp)=>{
     resp.send("Api is Running successfully");
